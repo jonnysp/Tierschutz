@@ -84,8 +84,6 @@ class AnimalsCategorieViewer extends ContentElement
 					"id" => $value->id,
 					"title" => $value->title,
 					"description" => $value->description,
-					"ingredients" => $value->ingredients,
-					"preparation" => $value->preparation,
 					"published" => $value->published,
 					"tags" => StringUtil::deserialize($value->tags),
 					"categories" => StringUtil::deserialize($value->categories),
