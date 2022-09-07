@@ -9,8 +9,8 @@
 			<figure class="card-img mb-0" style="overflow: hidden; " itemscope="" itemtype="http://schema.org/ImageObject" itemprop="associatedMedia">
 				<a itemprop="contentURL" href="#" data-bs-toggle="modal" data-bs-target="#Animal_<?=$Animalskey?>" >
 				<img src="<?= $Animal['image']['path'] ?>" alt="<?= $Animal['title'] ?>" class="img-fluid figure-img rounded mb-0" itemprop="image" width="1500" height="844">
-			  		<figcaption class="carousel-caption bg-dark p-1" itemprop="caption">
-				        <h5><?= $Animal['title'] ?></h5>
+			  		<figcaption class="carousel-caption bg-primary p-1" itemprop="caption">
+				        <h5 class="text-light"><?= $Animal['title'] ?></h5>
 			     	</figcaption>
 				</a>
 			</figure>
