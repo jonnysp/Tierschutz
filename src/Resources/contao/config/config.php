@@ -8,9 +8,9 @@
  * @license LGPL-3.0+
  */
 
-array_insert($GLOBALS['BE_MOD']['tierschutz'], 100, array
+array_insert($GLOBALS['BE_MOD']['animals'], 100, array
 (
-	'recipescategorie' 		=> array('tables' => array('tl_tierschutz_categories', 'tl_tierschutz'))
+	'animalscategorie' 		=> array('tables' => array('tl_animals_categories', 'tl_animals'))
 ));
 
 
@@ -19,7 +19,7 @@ array_insert($GLOBALS['BE_MOD']['tierschutz'], 100, array
  */
 if (TL_MODE == 'BE')
 {
-	$GLOBALS['TL_CSS'][] = 'bundles/jonnysptierschutz/tierschutz.css|static';
+	$GLOBALS['TL_CSS'][] = 'bundles/jonnyspanimals/animals.css|static';
 }
 
 
@@ -30,7 +30,7 @@ array_insert($GLOBALS['TL_CTE'], 1, array
 	(
 		'includes' 	=> array
 			(
-				'tierschutzcategorie_viewer'	=> 'TierschutzCategorieViewer'
+				'animalscategorie_viewer'	=> 'animalsCategorieViewer'
 			)
 	)
 );

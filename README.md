@@ -1,2 +1,2 @@
-# Tierschutz
-Adds Tierschutz Management to Contao 4
+# Rezept
+Adds Recipes Management to Contao 4

@@ -38,7 +38,7 @@
         "contao-manager-plugin": "Jonnysp\\Tierschutz\\ContaoManager\\Plugin"
     },
     "support": {
-        "issues": "https://github.com/jonnysp/Tierschutz/issues",
-        "source": "https://github.com/jonnysp/Tierschutz"
+        "issues": "https://github.com/jonnysp/tierschutz/issues",
+        "source": "https://github.com/jonnysp/tierschutz"
     }
 }

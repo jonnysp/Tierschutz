@@ -1,11 +1,11 @@
 
-<h1><?= $this->TierschutzCategorie['title'] ?></h1>
-<?= $this->TierschutzCategorie['description']; ?>
+<h1><?= $this->RecipesCategorie['title'] ?></h1>
+<?= $this->RecipesCategorie['description']; ?>
 
 
 <div class="card-columns">
 
-	<?php foreach ($this->Tierschutz as $Tierschutzkey => $Recipe): ?>
+	<?php foreach ($this->Recipes as $Recipekey => $Recipe): ?>
 		<div class="card clearfix ce_image text-white mb-3">
 			<figure class="card-img mb-0" style="overflow: hidden; " itemscope="" itemtype="http://schema.org/ImageObject" itemprop="associatedMedia">
 				<a itemprop="contentURL" href="#" data-toggle="modal" data-target="#Recipe_<?=$Recipekey?>" >
