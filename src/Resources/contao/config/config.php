@@ -8,9 +8,9 @@
  * @license LGPL-3.0+
  */
 
-array_insert($GLOBALS['BE_MOD']['recipes'], 100, array
+array_insert($GLOBALS['BE_MOD']['animals'], 100, array
 (
-	'recipescategorie' 		=> array('tables' => array('tl_recipes_categories', 'tl_recipes'))
+	'animalscategorie' 		=> array('tables' => array('tl_animals_categories', 'tl_animals'))
 ));
 
 
@@ -19,7 +19,7 @@ array_insert($GLOBALS['BE_MOD']['recipes'], 100, array
  */
 if (TL_MODE == 'BE')
 {
-	$GLOBALS['TL_CSS'][] = 'bundles/jonnysprezept/recipes.css|static';
+	$GLOBALS['TL_CSS'][] = 'bundles/jonnysptierschutz/animals.css|static';
 }
 
 
@@ -30,7 +30,7 @@ array_insert($GLOBALS['TL_CTE'], 1, array
 	(
 		'includes' 	=> array
 			(
-				'recipescategorie_viewer'	=> 'RecipesCategorieViewer'
+				'animalscategorie_viewer'	=> 'AnimalsCategorieViewer'
 			)
 	)
 );

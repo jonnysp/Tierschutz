@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Table tl_recipes_categories
+ * Table tl_animals_categories
  */
-$GLOBALS['TL_DCA']['tl_recipes_categories'] = array
+$GLOBALS['TL_DCA']['tl_animals_categories'] = array
 (
 
 	// Config
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ctable'                      => array('tl_recipes'),
+		'ctable'                      => array('tl_animals'),
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -51,32 +51,32 @@ $GLOBALS['TL_DCA']['tl_recipes_categories'] = array
 		(
 			'edit' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes_categories']['edit'],
-				'href'                => 'table=tl_recipes',
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['edit'],
+				'href'                => 'table=tl_animals',
 				'icon'                => 'edit.svg'
 			),
 			'editheader' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes_categories']['editheader'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['editheader'],
 				'href'                => 'act=edit',
 				'icon'                => 'header.svg'
 			),
 			'copy' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes_categories']['copy'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['copy'],
 				'href'                => 'act=copy',
 				'icon'                => 'copy.svg'
 			),
 			'delete' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes_categories']['delete'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.svg',
 				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
 			),
 			'show' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes_categories']['show'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['show'],
 				'href'                => 'act=show',
 				'icon'                => 'show.svg'
 			)
@@ -102,7 +102,7 @@ $GLOBALS['TL_DCA']['tl_recipes_categories'] = array
 		),
 		'title' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes_categories']['title'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals_categories']['title'],
 			'search'                  => true,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
@@ -110,14 +110,14 @@ $GLOBALS['TL_DCA']['tl_recipes_categories'] = array
 		),
 		'image' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes_categories']['image'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals_categories']['image'],
 			'inputType'               => 'fileTree',
 			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
 			'sql'                     => "binary(16) NULL",
 		),
 		'description' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes_categories']['description'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals_categories']['description'],
 			'inputType'               => 'textarea',
 			'eval'                    => array('rte'=>'tinyMCE'),
 			'sql'                     => "text NULL"

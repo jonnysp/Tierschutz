@@ -1,16 +1,16 @@
 <?php
 
-class RecipesCategorieViewer extends ContentElement
+class AnimalsCategorieViewer extends ContentElement
 {
-	protected $strTemplate = 'ce_recipescategorieviewer';
+	protected $strTemplate = 'ce_animalscategorieviewer';
 
 	public function generate()
 	{
 		if (TL_MODE == 'BE')
 		{
-			$objCat = \RecipesCategoriesModel::findByPK($this->recipescategorie);
+			$objCat = \AnimalsCategoriesModel::findByPK($this->animalscategorie);
 			$objTemplate = new \BackendTemplate('be_wildcard');
-			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['tl_content']['recipes_categories_legend']) . ' ###';
+			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['tl_content']['animals_categories_legend']) . ' ###';
 			$objTemplate->title = '['. $objCat->id.'] - '. $objCat->title;
 			return $objTemplate->parse();	
 		}
@@ -20,16 +20,16 @@ class RecipesCategorieViewer extends ContentElement
 	protected function compile()
 	{
 		global $objPage;
-		$this->loadLanguageFile('tl_recipes');
-		$this->loadLanguageFile('tl_recipes_categories');
+		$this->loadLanguageFile('tl_animals');
+		$this->loadLanguageFile('tl_animals_categories');
 
 		//gets the categorie
-		$objCategorie = \RecipesCategoriesModel::findByPK($this->recipescategorie);
+		$objCategorie = \AnimalsCategoriesModel::findByPK($this->animalscategorie);
 		
-		$Recipes = array();
+		$Animals = array();
 
-		$filterRecipes = \RecipesModel::findAll(
-			array('column' => array('pid=?','published=?'),'value' => array($this->recipescategorie,1) ,'order' => 'sorting')
+		$filterAnimals = \AnimalsModel::findAll(
+			array('column' => array('pid=?','published=?'),'value' => array($this->animalscategorie,1) ,'order' => 'sorting')
 		);
 
 		//get Categorie data
@@ -48,24 +48,24 @@ class RecipesCategorieViewer extends ContentElement
 		);
 
 
-		//get Recipes data
-		if (count($filterRecipes) > 0){
-			foreach ($filterRecipes as $key => $value) {
+		//get Animals data
+		if (count($filterAnimals) > 0){
+			foreach ($filterAnimals as $key => $value) {
 
 				//main Image
-				$RecipeImage = \FilesModel::findByPk($value->image);
+				$AnimalImage = \FilesModel::findByPk($value->image);
 				
 				//additional sorted Images
-				$RecipeImages = array();
-				$RecipeUnsortedImages = \FilesModel::findMultipleByUuids(StringUtil::deserialize($value->images));
-				$RecipeImagesSort = StringUtil::deserialize($value->imagessort);
+				$AnimalImages = array();
+				$AnimalUnsortedImages = \FilesModel::findMultipleByUuids(StringUtil::deserialize($value->images));
+				$AnimalImagesSort = StringUtil::deserialize($value->imagessort);
 
-		 		if ($RecipeImagesSort){
-		 			foreach ($RecipeImagesSort as $sortkey => $uuid) {
-						if ($RecipeUnsortedImages){
-							foreach ($RecipeUnsortedImages as $Image) {
+		 		if ($AnimalImagesSort){
+		 			foreach ($AnimalImagesSort as $sortkey => $uuid) {
+						if ($AnimalUnsortedImages){
+							foreach ($AnimalUnsortedImages as $Image) {
 								if ($Image->uuid == $uuid) {
-									array_push($RecipeImages, array
+									array_push($AnimalImages, array
 										(
 											"meta" => $this->getMetaData($Image->meta, $objPage->language),
 											"path" => $Image->path,
@@ -80,7 +80,7 @@ class RecipesCategorieViewer extends ContentElement
 				}
 
 				// generate Data_array
-				$Recipes[$key] = array(
+				$Animals[$key] = array(
 					"id" => $value->id,
 					"title" => $value->title,
 					"description" => $value->description,
@@ -90,18 +90,18 @@ class RecipesCategorieViewer extends ContentElement
 					"tags" => StringUtil::deserialize($value->tags),
 					"categories" => StringUtil::deserialize($value->categories),
 					"image" =>  array(
-							"meta" => $this->getMetaData($RecipeImage->meta, $objPage->language),
-							"path" => $RecipeImage->path,
-							"name" => $RecipeImage->name,
-							"extension" => $RecipeImage->extension
+							"meta" => $this->getMetaData($AnimalImage->meta, $objPage->language),
+							"path" => $AnimalImage->path,
+							"name" => $AnimalImage->name,
+							"extension" => $AnimalImage->extension
 							),
-					"images" => $RecipeImages
+					"images" => $AnimalImages
 				);
 			}
 		}
 
-		$this->Template->RecipesCategorie = $Categorie;
-		$this->Template->Recipes = $Recipes;
+		$this->Template->AnimalsCategorie = $Categorie;
+		$this->Template->Animals = $Animals;
 
 	}//end compile
 

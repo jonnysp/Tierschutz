@@ -1,16 +1,16 @@
 <?php
 
 /**
- * Table tl_recipes
+ * Table tl_animals
  */
-$GLOBALS['TL_DCA']['tl_recipes'] = array
+$GLOBALS['TL_DCA']['tl_animals'] = array
 (
 
 	// Config
 	'config' => array
 	(
 		'dataContainer'               => 'Table',
-		'ptable'                      => 'tl_recipes_categories',
+		'ptable'                      => 'tl_animals_categories',
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -32,7 +32,7 @@ $GLOBALS['TL_DCA']['tl_recipes'] = array
 			'headerFields'            => array('title'),
 			'flag'        			  => 1,
 			'panelLayout'             => 'filter;search,limit',
-			'child_record_callback'   => array('tl_recipes', 'generateReferenzRow')
+			'child_record_callback'   => array('tl_animals', 'generateReferenzRow')
 		),
 
 		'global_operations' => array
@@ -51,42 +51,42 @@ $GLOBALS['TL_DCA']['tl_recipes'] = array
 
 			'edit' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes']['edit'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['edit'],
 				'href'                => 'act=edit',
 				'icon'                => 'edit.svg'
 			),
 
 			'copy' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes']['copy'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['copy'],
 				'href'                => 'act=copy',
 				'icon'                => 'copy.svg'
 			),
 			'cut' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes']['cut'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['cut'],
 				'href'                => 'act=paste&amp;mode=cut',
 				'icon'                => 'cut.svg'
 			),
 			'delete' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes']['delete'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['delete'],
 				'href'                => 'act=delete',
 				'icon'                => 'delete.svg',
 				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
 			),
 			'show' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes']['show'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['show'],
 				'href'                => 'act=show',
 				'icon'                => 'show.svg'
 			),
 			'toggle' => array
 			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_recipes']['toggle'],
+				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['toggle'],
 				'icon'                => 'visible.svg',
 				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-				'button_callback'     => array('tl_recipes', 'toggleIcon')
+				'button_callback'     => array('tl_animals', 'toggleIcon')
 			)
 		)
 	),
@@ -118,7 +118,7 @@ $GLOBALS['TL_DCA']['tl_recipes'] = array
 		),
 		'title' => array
 		(
-			'label'                 => &$GLOBALS['TL_LANG']['tl_recipes']['title'],
+			'label'                 => &$GLOBALS['TL_LANG']['tl_animals']['title'],
 			'search'              	=> true,
 			'inputType'          	=> 'text',
 			'eval'                  => array('mandatory'=>true, 'maxlength'=>128, 'tl_class'=>'w50'),
@@ -126,51 +126,51 @@ $GLOBALS['TL_DCA']['tl_recipes'] = array
 		),
 		'image' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes']['image'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['image'],
 			'inputType'               => 'fileTree',
 			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
 			'sql'                     => ['type' => 'binary','notnull' => false,'length' => 16,'fixed' => true]
 		),
 		'images' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes']['images'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['images'],
 			'inputType'               => 'fileTree',
 			'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'imagessort', 'files'=>true,'tl_class'=>'long clr','filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
 			'sql'                     => ['type' => 'blob','notnull' => false],
 			'load_callback' => array
 			(
-				array('tl_recipes', 'setFileTreeFlags')
+				array('tl_animals', 'setFileTreeFlags')
 			)
 		),
 		'imagessort' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_products']['imagessort'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['imagessort'],
 			'sql'                     => ['type' => 'blob','notnull' => false]
 		),
 		'description' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes']['description'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['description'],
 			'inputType'               => 'textarea',
 			'eval'                    => array('rte'=>'tinyMCE','tl_class'=>'clr'),
 			'sql'                     => ['type' => 'text','notnull' => false]
 		),
 		'ingredients' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes']['ingredients'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['ingredients'],
 			'inputType'               => 'textarea',
 			'eval'                    => array('rte'=>'tinyMCE','tl_class'=>'clr'),
 			'sql'                     => ['type' => 'text','notnull' => false]
 		),
 		'preparation' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes']['preparation'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['preparation'],
 			'inputType'               => 'textarea',
 			'eval'                    => array('rte'=>'tinyMCE','tl_class'=>'clr'),
 			'sql'                     => ['type' => 'text','notnull' => false]
 		),
 		'published' => array
 		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_recipes']['toggle'],
+			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['toggle'],
 			'filter'                  => true,
 			'inputType'               => 'checkbox',
 			'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true, 'tl_class'=>'w50'),
@@ -181,10 +181,10 @@ $GLOBALS['TL_DCA']['tl_recipes'] = array
 
 use Contao\Image\ResizeConfiguration;
 
-class tl_recipes extends Backend{
+class tl_animals extends Backend{
 
 	public function generateReferenzRow($arrRow)	{
-		$this->loadLanguageFile('tl_recipes');
+		$this->loadLanguageFile('tl_animals');
 
 		$label = $arrRow['title'];
 
@@ -240,9 +240,9 @@ class tl_recipes extends Backend{
 		Input::setGet('act', 'toggle');
 
 		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_recipes']['fields']['published']['save_callback']))
+		if (is_array($GLOBALS['TL_DCA']['tl_animals']['fields']['published']['save_callback']))
 		{
-			foreach ($GLOBALS['TL_DCA']['tl_recipes']['fields']['published']['save_callback'] as $callback)
+			foreach ($GLOBALS['TL_DCA']['tl_animals']['fields']['published']['save_callback'] as $callback)
 			{
 				if (is_array($callback))
 				{
@@ -257,7 +257,7 @@ class tl_recipes extends Backend{
 		}
 
 		// Update the database
-		$this->Database->prepare("UPDATE tl_recipes SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+		$this->Database->prepare("UPDATE tl_animals SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
 					   ->execute($intId);
 	}
 
