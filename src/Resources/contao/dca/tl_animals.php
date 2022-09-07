@@ -94,7 +94,7 @@ $GLOBALS['TL_DCA']['tl_animals'] = array
 	// Palettes
 	'palettes' => array
 	(
-		'default'                     => '{title_legend},title,published;{title_images},image,images;{title_description},description,ingredients,preparation,tags'
+		'default'                     => '{title_legend},title,published;{title_images},image,images;{title_description},description;'
 	),
 
 	// Fields
@@ -150,20 +150,6 @@ $GLOBALS['TL_DCA']['tl_animals'] = array
 		'description' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['description'],
-			'inputType'               => 'textarea',
-			'eval'                    => array('rte'=>'tinyMCE','tl_class'=>'clr'),
-			'sql'                     => ['type' => 'text','notnull' => false]
-		),
-		'ingredients' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['ingredients'],
-			'inputType'               => 'textarea',
-			'eval'                    => array('rte'=>'tinyMCE','tl_class'=>'clr'),
-			'sql'                     => ['type' => 'text','notnull' => false]
-		),
-		'preparation' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['preparation'],
 			'inputType'               => 'textarea',
 			'eval'                    => array('rte'=>'tinyMCE','tl_class'=>'clr'),
 			'sql'                     => ['type' => 'text','notnull' => false]
