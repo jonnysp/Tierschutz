@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Jonnysp\Tierschutz\ContaoManager;
+namespace Jonnysp\Rezept\ContaoManager;
 
 use Jonnysp\Rezept\JonnyspRezept;
 use Contao\CoreBundle\ContaoCoreBundle;
@@ -18,9 +18,9 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create(JonnyspTierschutz::class)
+            BundleConfig::create(JonnyspRezept::class)
                 ->setLoadAfter([ContaoCoreBundle::class])
-                ->setReplace(['tier']),
+                ->setReplace(['rezept']),
         ];
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "jonnysp/tierschutz",
+    "name": "jonnysp/rezept",
     "type": "contao-bundle",
     "description": "Adds Recipes Management to Contao 4",
     "keywords":["rezept","contao"],
@@ -35,10 +35,10 @@
         "preferred-install": "dist"
     },
     "extra": {
-        "contao-manager-plugin": "Jonnysp\\Tierschutz\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Jonnysp\\Rezept\\ContaoManager\\Plugin"
     },
     "support": {
-        "issues": "https://github.com/jonnysp/tierschutz/issues",
-        "source": "https://github.com/jonnysp/tierschutz"
+        "issues": "https://github.com/jonnysp/Rezept/issues",
+        "source": "https://github.com/jonnysp/Rezept"
     }
 }
