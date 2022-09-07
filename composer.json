@@ -1,8 +1,8 @@
 {
-    "name": "jonnysp/rezept",
+    "name": "jonnysp/tierschutz",
     "type": "contao-bundle",
-    "description": "Adds Recipes Management to Contao 4",
-    "keywords":["rezept","contao"],
+    "description": "Adds Tierschutz Management to Contao 4",
+    "keywords":["tierschutz","contao"],
     "license": "LGPL-3.0+",
     "authors": [
         {
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jonnysp\\Rezept\\": "src/"
+            "Jonnysp\\Tierschutz\\": "src/"
         },
         "classmap": [
             "src/Resources/contao/"
@@ -35,10 +35,10 @@
         "preferred-install": "dist"
     },
     "extra": {
-        "contao-manager-plugin": "Jonnysp\\Rezept\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "Jonnysp\\Tierschutz\\ContaoManager\\Plugin"
     },
     "support": {
-        "issues": "https://github.com/jonnysp/Rezept/issues",
-        "source": "https://github.com/jonnysp/Rezept"
+        "issues": "https://github.com/jonnysp/Tierschutz/issues",
+        "source": "https://github.com/jonnysp/Tierschutz"
     }
 }
