@@ -221,7 +221,6 @@ class tl_animals extends Backend{
 
 	public function toggleVisibility($intId, $blnVisible, DataContainer $dc=null)
 	{
-
 		Input::setGet('id', $intId);
 		Input::setGet('act', 'toggle');
 
