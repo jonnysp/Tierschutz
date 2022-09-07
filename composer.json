@@ -1,8 +1,8 @@
 {
     "name": "jonnysp/tierschutz",
     "type": "contao-bundle",
-    "description": "Adds Tierschutz Management to Contao 4",
-    "keywords":["tierschutz","contao"],
+    "description": "Adds Recipes Management to Contao 4",
+    "keywords":["rezept","contao"],
     "license": "LGPL-3.0+",
     "authors": [
         {
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Jonnysp\\Tierschutz\\": "src/"
+            "Jonnysp\\Rezept\\": "src/"
         },
         "classmap": [
             "src/Resources/contao/"

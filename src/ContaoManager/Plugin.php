@@ -1,9 +1,9 @@
 <?php
 
 
-namespace Jonnysp\Animal\ContaoManager;
+namespace Jonnysp\Rezept\ContaoManager;
 
-use Jonnysp\Animal\JonnyspAnimal;
+use Jonnysp\Rezept\JonnyspRezept;
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\BundlePluginInterface;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
@@ -18,9 +18,9 @@ class Plugin implements BundlePluginInterface
     public function getBundles(ParserInterface $parser)
     {
         return [
-            BundleConfig::create(JonnyspAnimal::class)
+            BundleConfig::create(JonnyspRezept::class)
                 ->setLoadAfter([ContaoCoreBundle::class])
-                ->setReplace(['animal']),
+                ->setReplace(['rezept']),
         ];
     }
 }
