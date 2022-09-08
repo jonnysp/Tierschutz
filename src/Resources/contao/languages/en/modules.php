@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['TL_LANG']['MOD']['recipes'] = array('Recipes administration');
-$GLOBALS['TL_LANG']['MOD']['recipescategorie'] = array('Recipes','Manage the recipes');
+$GLOBALS['TL_LANG']['MOD']['animals'] = array('animals administration');
+$GLOBALS['TL_LANG']['MOD']['animalscategorie'] = array('Animals','Manage the animals');
 
-$GLOBALS['TL_LANG']['CTE']['recipescategorie_viewer'] = array("Recipe Category","");
+$GLOBALS['TL_LANG']['CTE']['animalscategorie_viewer'] = array("Animal Category","");
