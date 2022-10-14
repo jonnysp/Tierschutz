@@ -7,12 +7,16 @@
 	<div class="col">	
 		<div class="card clearfix ce_image text-white mb-3">
 			<figure class="card-img mb-0" style="overflow: hidden; " itemscope="" itemtype="http://schema.org/ImageObject" itemprop="associatedMedia">
-				<a itemprop="contentURL" href="#" data-bs-toggle="modal" data-bs-target="#Animal_<?=$Animalskey?>" >
-				<img src="<?= $Animal['image']['path'] ?>" alt="<?= $Animal['title'] ?>" class="img-fluid figure-img rounded mb-0" itemprop="image" width="1500" height="844">
-			  		<figcaption class="carousel-caption bg-primary p-1" itemprop="caption">
-				        <h5 class="text-light"><?= $Animal['title'] ?></h5>
-			     	</figcaption>
-				</a>
+			
+				<div class="ratio ratio-4x3">
+					<a itemprop="contentURL" href="#" data-bs-toggle="modal" data-bs-target="#Animal_<?=$Animalskey?>" >
+						<img src="<?= $Animal['image']['path'] ?>" alt="<?= $Animal['title'] ?>" class="w-100 h-100 object-fit-cover" itemprop="image">
+						<figcaption class="carousel-caption bg-primary p-1" itemprop="caption">
+							<h5 class="text-light"><?= $Animal['title'] ?></h5>
+						</figcaption>
+					</a>
+				</div>				
+				
 			</figure>
 		</div>
 	</div>	
@@ -46,7 +50,9 @@
 				<div class="carousel-inner">
 					<?php foreach ($Animal['images'] as $key => $value): ?>
 					    <div class="carousel-item <?= ($key == 0 ? 'active' : ''); ?>">
-					        <img src="<?= $value['path'] ?>" class="d-block w-100" alt="...">
+							<div class="ratio ratio-4x3">					    	
+					        	<img src="<?= $value['path'] ?>" class=" w-100 h-100 object-fit-cover" alt="...">
+							</div>	        
 					    </div>
 					<?php endforeach; ?>
 				</div>
