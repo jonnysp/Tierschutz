@@ -1,4 +1,12 @@
 <?php
+use Contao\ContentElement;
+use Contao\BackendTemplate;
+use Contao\System;
+use Contao\FilesModel;
+use Contao\StringUtil;
+
+use Animals\Model\AnimalsCategoriesModel;
+use Animals\Model\AnimalsModel;
 
 class AnimalsCategorieViewer extends ContentElement
 {
@@ -6,14 +14,17 @@ class AnimalsCategorieViewer extends ContentElement
 
 	public function generate()
 	{
-		if (TL_MODE == 'BE')
+
+		$request = System::getContainer()->get('request_stack')->getCurrentRequest();
+		if ($request && System::getContainer()->get('contao.routing.scope_matcher')->isBackendRequest($request))
 		{
-			$objCat = \AnimalsCategoriesModel::findByPK($this->animalscategorie);
-			$objTemplate = new \BackendTemplate('be_wildcard');
-			$objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['tl_content']['animals_categories_legend']) . ' ###';
+			$objCat = AnimalsCategoriesModel::findByPK($this->animalscategorie);
+			$objTemplate = new BackendTemplate('be_wildcard');
+			$objTemplate->wildcard = '### ' . $GLOBALS['TL_LANG']['tl_content']['animals_categories_legend'] . ' ###';
 			$objTemplate->title = '['. $objCat->id.'] - '. $objCat->title;
 			return $objTemplate->parse();	
 		}
+
 		return parent::generate();
 	}//end generate
 
@@ -23,83 +34,77 @@ class AnimalsCategorieViewer extends ContentElement
 		$this->loadLanguageFile('tl_animals');
 		$this->loadLanguageFile('tl_animals_categories');
 
-		//gets the categorie
-		$objCategorie = \AnimalsCategoriesModel::findByPK($this->animalscategorie);
-		
+		$Categorie = array();
 		$Animals = array();
 
-		$filterAnimals = \AnimalsModel::findAll(
-			array('column' => array('pid=?','published=?'),
-				   'value' => array($this->animalscategorie , 1),
-				   'order' => 'sorting'
-			)
+		$objCategorie = AnimalsCategoriesModel::findByPK($this->animalscategorie);
+		$filterAnimals = AnimalsModel::findAll(
+			array('column' => array('pid=?','published=?'),'value' => array($this->animalscategorie,1) ,'order' => 'sorting')
 		);
 
-		//get Categorie data
-		$CategorieImage = \FilesModel::findByPk($objCategorie->image);
-
+		//make Categorie data
 		$Categorie = array(
 			"id" => $objCategorie->id,
 			"title" => $objCategorie->title,
-			"description" => $objCategorie->description,
-			"image" => array(
-					"meta" => $this->getMetaData($CategorieImage->meta, $objPage->language),
-					"path" => $CategorieImage->path,
-					"name" => $CategorieImage->name,
-					"extension" => $CategorieImage->extension
-				)
+			"description" => $objCategorie->description//,
 		);
+		$CategorieImage = FilesModel::findByPk($objCategorie->image);
+		if ($CategorieImage) {
+			$Categorie['image'] = array(
+				"meta"      => StringUtil::deserialize($CategorieImage->meta),
+				"path"      => $CategorieImage->path,
+				"name"      => $CategorieImage->name,
+				"extension" => $CategorieImage->extension
+			);
+		}else{
+			$Categorie['image'] = null;
+		}
 
-		//get Animals data
-		if(is_null($filterAnimals) == false){
+		//make Animal data
+		if (count($filterAnimals) > 0){
+			foreach ($filterAnimals as $key => $value) {
+			
+				// generate Data_array
+				$Animals[$key] = array(
+					"id" => $value->id,
+					"title" => $value->title,
+					"description" => $value->description,
+					"published" => $value->published
+				);
 
-			if (count($filterAnimals) > 0){
-				foreach ($filterAnimals as $key => $value) {
-
-					//main Image
-					$AnimalImage = \FilesModel::findByPk($value->image);
-					
-					//additional sorted Images
-					$AnimalImages = array();
-					$AnimalUnsortedImages = \FilesModel::findMultipleByUuids(StringUtil::deserialize($value->images));
-					$AnimalImagesSort = StringUtil::deserialize($value->imagessort);
-
-			 		if ($AnimalImagesSort){
-			 			foreach ($AnimalImagesSort as $sortkey => $uuid) {
-							if ($AnimalUnsortedImages){
-								foreach ($AnimalUnsortedImages as $Image) {
-									if ($Image->uuid == $uuid) {
-										array_push($AnimalImages, array
-											(
-												"meta" => $this->getMetaData($Image->meta, $objPage->language),
-												"path" => $Image->path,
-												"name" => $Image->name,
-												"extension" => $Image->extension
-											)
-										);
-									}
-								}
-							}
-			 			}
-					}
-
-					// generate Data_array
-					$Animals[$key] = array(
-						"id" => $value->id,
-						"title" => $value->title,
-						"description" => $value->description,
-						"published" => $value->published,
-						"tags" => StringUtil::deserialize($value->tags),
-						"categories" => StringUtil::deserialize($value->categories),
-						"image" =>  array(
-								"meta" => $this->getMetaData($AnimalImage->meta, $objPage->language),
-								"path" => $AnimalImage->path,
-								"name" => $AnimalImage->name,
-								"extension" => $AnimalImage->extension
-								),
-						"images" => $AnimalImages
+				//main Image				
+				$AnimalImage = FilesModel::findByPk($value->image);
+				if ($AnimalImage) {
+					$Animals[$key]['image'] = array(
+						"meta"      => StringUtil::deserialize($AnimalImage->meta), 
+						"path"      => $AnimalImage->path,
+						"name"      => $AnimalImage->name,
+						"extension" => $AnimalImage->extension
 					);
+				}else{
+					$Animals[$key]['image'] = null;
 				}
+
+				//additional Images
+				$Images = array();
+				$AnimalImages = FilesModel::findMultipleByUuids(StringUtil::deserialize($value->images));
+				if ($AnimalImages){
+					foreach ($AnimalImages as $Image) {
+						array_push($Images, array
+							(
+								"meta" => StringUtil::deserialize($Image->meta), 
+								"path" => $Image->path,
+								"name" => $Image->name,
+								"extension" => $Image->extension
+							)
+						);
+					}
+					$Animals[$key]['images'] = $Images;	
+				}else{
+					$Animals[$key]['images'] = null;	
+				}
+				
+
 			}
 		}
 
@@ -107,6 +112,8 @@ class AnimalsCategorieViewer extends ContentElement
 		$this->Template->AnimalsCategorie = $Categorie;
 		$this->Template->Animals = $Animals;
 
+
 	}//end compile
 
 }//end class
+

@@ -1,4 +1,5 @@
 <?php
+use Contao\DC_Table;
 
 /**
  * Table tl_animals
@@ -9,7 +10,7 @@ $GLOBALS['TL_DCA']['tl_animals'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
+		'dataContainer'               =>  DC_Table::class,
 		'ptable'                      => 'tl_animals_categories',
 		'enableVersioning'            => true,
 		'sql' => array
@@ -30,10 +31,13 @@ $GLOBALS['TL_DCA']['tl_animals'] = array
 			'mode'                    => 4,
 			'fields'                  => array('sorting'),
 			'headerFields'            => array('title'),
-			'flag'        			  => 1,
-			'panelLayout'             => 'filter;search,limit',
-			'child_record_callback'   => array('tl_animals', 'generateReferenzRow')
+			'panelLayout'             => 'filter;search,limit'
 		),
+
+        'label' => [
+            'fields'                  => ['title'],
+            'format'                  => '%s',
+        ],
 
 		'global_operations' => array
 		(
@@ -47,48 +51,19 @@ $GLOBALS['TL_DCA']['tl_animals'] = array
 		),
 		
 		'operations' => array
-		(
-
-			'edit' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['edit'],
-				'href'                => 'act=edit',
-				'icon'                => 'edit.svg'
-			),
-
-			'copy' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['copy'],
-				'href'                => 'act=copy',
-				'icon'                => 'copy.svg'
-			),
-			'cut' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['cut'],
-				'href'                => 'act=paste&amp;mode=cut',
-				'icon'                => 'cut.svg'
-			),
-			'delete' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['delete'],
-				'href'                => 'act=delete',
-				'icon'                => 'delete.svg',
-				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
-			),
-			'show' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['show'],
-				'href'                => 'act=show',
-				'icon'                => 'show.svg'
-			),
-			'toggle' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals']['toggle'],
-				'icon'                => 'visible.svg',
-				'attributes'          => 'onclick="Backend.getScrollOffset();return AjaxRequest.toggleVisibility(this,%s)"',
-				'button_callback'     => array('tl_animals', 'toggleIcon')
-			)
-		)
+        (
+        	'edit',
+        	'copy',
+        	'cut',
+        	'delete',
+        	'toggle' => array
+        	(
+        	        'href'                => 'act=toggle&field=published',
+        	        'icon'                => 'visible.svg',
+        	        'primary'             => true
+        	),
+        	'show',
+        )
 	),
 
 	// Palettes
@@ -128,23 +103,14 @@ $GLOBALS['TL_DCA']['tl_animals'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['image'],
 			'inputType'               => 'fileTree',
-			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
+			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'%contao.image.valid_extensions%'),
 			'sql'                     => ['type' => 'binary','notnull' => false,'length' => 16,'fixed' => true]
 		),
 		'images' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['images'],
 			'inputType'               => 'fileTree',
-			'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'orderField'=>'imagessort', 'files'=>true,'tl_class'=>'long clr','filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
-			'sql'                     => ['type' => 'blob','notnull' => false],
-			'load_callback' => array
-			(
-				array('tl_animals', 'setFileTreeFlags')
-			)
-		),
-		'imagessort' => array
-		(
-			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['imagessort'],
+			'eval'                    => array('multiple'=>true, 'fieldType'=>'checkbox', 'isSortable'=>true , 'files'=>true,'tl_class'=>'long clr','filesOnly'=>true, 'extensions'=>'%contao.image.valid_extensions%'),
 			'sql'                     => ['type' => 'blob','notnull' => false]
 		),
 		'description' => array
@@ -157,95 +123,96 @@ $GLOBALS['TL_DCA']['tl_animals'] = array
 		'published' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_animals']['toggle'],
-			'filter'                  => true,
-			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true, 'tl_class'=>'w50'),
-			'sql'                     => "char(1) NOT NULL default ''",
-			'save_callback'			  => array()
+            'toggle'                  => true,
+            'filter'                  => true,
+            'inputType'               => 'checkbox',
+            'eval'                    => array('submitOnChange'=>true,'doNotCopy'=>true, 'tl_class'=>'w50'),
+            'sql'                     => array('type'=>'boolean', 'default'=>false)
 		)
 	)
 );
 
-use Contao\Image\ResizeConfiguration;
-
-class tl_animals extends Backend{
-
-	public function generateReferenzRow($arrRow)	{
-		$this->loadLanguageFile('tl_animals');
-
-		$label = $arrRow['title'];
-
-		if ($arrRow['image'] != '')
-		{
-			$objFile = FilesModel::findByUuid($arrRow['image']);
-			if ($objFile !== null)
-			{
-				$container = System::getContainer();
-				$rootDir = $container->getParameter('kernel.project_dir');
-
-				$label = Image::getHtml($container->get('contao.image.image_factory')->create($rootDir.'/'.$objFile->path,(new ResizeConfiguration())->setWidth(80)->setHeight(80)->setMode(ResizeConfiguration::MODE_BOX))->getUrl($rootDir), '', 'style="float:left;"') . ' ' . $label;
-
-			}
-		}
-		return $label;
-    }
-
-
-	public function setFileTreeFlags($varValue, DataContainer $dc)
-	{
-		if ($dc->activeRecord)
-		{
-				$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
-		}
-		return $varValue;
-	}
-
-
-	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
-	{
-		if (strlen(Input::get('tid')))
-		{
-			$this->toggleVisibility(Input::get('tid'), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
-			$this->redirect($this->getReferer());
-		}
-
-		$href .= '&amp;tid='.$row['id'].'&amp;state='.($row['published'] ? '' : 1);
-
-		if (!$row['published'])
-		{
-			$icon = 'invisible.gif';
-		}
-
-		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
-	}
-
-
-	public function toggleVisibility($intId, $blnVisible, DataContainer $dc=null)
-	{
-		Input::setGet('id', $intId);
-		Input::setGet('act', 'toggle');
-
-		// Trigger the save_callback
-		if (is_array($GLOBALS['TL_DCA']['tl_animals']['fields']['published']['save_callback']))
-		{
-			foreach ($GLOBALS['TL_DCA']['tl_animals']['fields']['published']['save_callback'] as $callback)
-			{
-				if (is_array($callback))
-				{
-					$this->import($callback[0]);
-					$blnVisible = $this->$callback[0]->$callback[1]($blnVisible, ($dc ?: $this));
-				}
-				elseif (is_callable($callback))
-				{
-					$blnVisible = $callback($blnVisible, ($dc ?: $this));
-				}
-			}
-		}
-
-		// Update the database
-		$this->Database->prepare("UPDATE tl_animals SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
-					   ->execute($intId);
-	}
-
-}
-
+//use Contao\Image\ResizeConfiguration;
+//
+//class tl_animals extends Backend{
+//
+//	public function generateReferenzRow($arrRow)	{
+//		$this->loadLanguageFile('tl_animals');
+//
+//		$label = $arrRow['title'];
+//
+//		if ($arrRow['image'] != '')
+//		{
+//			$objFile = FilesModel::findByUuid($arrRow['image']);
+//			if ($objFile !== null)
+//			{
+//				$container = System::getContainer();
+//				$rootDir = $container->getParameter('kernel.project_dir');
+//
+//				$label = Image::getHtml($container->get('contao.image.image_factory')->create($rootDir.'/'.$objFile->path,(new ResizeConfiguration())->setWidth(80)->setHeight(80)->setMode(ResizeConfiguration::MODE_BOX))->getUrl($rootDir), '', 'style="float:left;"') . ' ' . $label;
+//
+//			}
+//		}
+//		return $label;
+//    }
+//
+//
+//	public function setFileTreeFlags($varValue, DataContainer $dc)
+//	{
+//		if ($dc->activeRecord)
+//		{
+//				$GLOBALS['TL_DCA'][$dc->table]['fields'][$dc->field]['eval']['isGallery'] = true;
+//		}
+//		return $varValue;
+//	}
+//
+//
+//	public function toggleIcon($row, $href, $label, $title, $icon, $attributes)
+//	{
+//		if (strlen(Input::get('tid')))
+//		{
+//			$this->toggleVisibility(Input::get('tid'), (Input::get('state') == 1), (@func_get_arg(12) ?: null));
+//			$this->redirect($this->getReferer());
+//		}
+//
+//		$href .= '&amp;tid='.$row['id'].'&amp;state='.($row['published'] ? '' : 1);
+//
+//		if (!$row['published'])
+//		{
+//			$icon = 'invisible.gif';
+//		}
+//
+//		return '<a href="'.$this->addToUrl($href).'" title="'.specialchars($title).'"'.$attributes.'>'.Image::getHtml($icon, $label).'</a> ';
+//	}
+//
+//
+//	public function toggleVisibility($intId, $blnVisible, DataContainer $dc=null)
+//	{
+//		Input::setGet('id', $intId);
+//		Input::setGet('act', 'toggle');
+//
+//		// Trigger the save_callback
+//		if (is_array($GLOBALS['TL_DCA']['tl_animals']['fields']['published']['save_callback']))
+//		{
+//			foreach ($GLOBALS['TL_DCA']['tl_animals']['fields']['published']['save_callback'] as $callback)
+//			{
+//				if (is_array($callback))
+//				{
+//					$this->import($callback[0]);
+//					$blnVisible = $this->$callback[0]->$callback[1]($blnVisible, ($dc ?: $this));
+//				}
+//				elseif (is_callable($callback))
+//				{
+//					$blnVisible = $callback($blnVisible, ($dc ?: $this));
+//				}
+//			}
+//		}
+//
+//		// Update the database
+//		$this->Database->prepare("UPDATE tl_animals SET tstamp=". time() .", published='" . ($blnVisible ? 1 : '') . "' WHERE id=?")
+//					   ->execute($intId);
+//	}
+//
+//}
+//
+//

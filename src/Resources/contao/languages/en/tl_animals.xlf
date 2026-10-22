@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="plaintext" original="src/Resources/contao/languages/en/tl_animals.xlf" source-language="en" target-language="en">
+    <body>
+      <!-- Fields -->
+      <trans-unit id="tl_animals.categories.0">
+        <source>Animal categories</source>
+        <target>Animal categories</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.categories.1">
+        <source>Assign the animal categories here.</source>
+        <target>Assign the animal categories here.</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.title.0">
+        <source>Animal name</source>
+        <target>Animal name</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.title.1">
+        <source>Please enter the animal name here.</source>
+        <target>Please enter the animal name here.</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.image.0">
+        <source>Animal image</source>
+        <target>Animal image</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.image.1">
+        <source>Please select an animal image.</source>
+        <target>Please select an animal image.</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.description.0">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.description.1">
+        <source>Please enter a description.</source>
+        <target>Please enter a description.</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.toggle.0">
+        <source>Publish / Unpublish</source>
+        <target>Publish / Unpublish</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.toggle.1">
+        <source>Show or hide the animal on the website.</source>
+        <target>Show or hide the animal on the website.</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.images.0">
+        <source>More animal images</source>
+        <target>More animal images</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.images.1">
+        <source>Please select additional animal images here.</source>
+        <target>Please select additional animal images here.</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.imagessort.0">
+        <source>Image sorting</source>
+        <target>Image sorting</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.imagessort.1">
+        <source></source>
+        <target></target>
+      </trans-unit>
+
+      <!-- Legends -->
+      <trans-unit id="tl_animals.title_legend">
+        <source>Animal settings</source>
+        <target>Animal settings</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.title_legends">
+        <source>Animals settings</source>
+        <target>Animals settings</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.title_images">
+        <source>Animal images</source>
+        <target>Animal images</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.title_description">
+        <source>Animal descriptions</source>
+        <target>Animal descriptions</target>
+      </trans-unit>
+
+      <!-- Buttons -->
+      <trans-unit id="tl_animals.new.0">
+        <source>New animal</source>
+        <target>New animal</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.new.1">
+        <source>Create a new animal</source>
+        <target>Create a new animal</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.show.0">
+        <source>Animal details</source>
+        <target>Animal details</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.show.1">
+        <source>Show details of animal ID %s</source>
+        <target>Show details of animal ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.edit.0">
+        <source>Edit animal</source>
+        <target>Edit animal</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.edit.1">
+        <source>Edit animal ID %s</source>
+        <target>Edit animal ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.copy.0">
+        <source>Duplicate animal</source>
+        <target>Copy animal</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.copy.1">
+        <source>Duplicate animal ID %s</source>
+        <target>Copy animal ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.delete.0">
+        <source>Delete animal</source>
+        <target>Delete animal</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.delete.1">
+        <source>Delete animal ID %s</source>
+        <target>Delete animal ID %s</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.cut.0">
+        <source>Move animal</source>
+        <target>Move animal</target>
+      </trans-unit>
+      <trans-unit id="tl_animals.cut.1">
+        <source>Move animal ID %s</source>
+        <target>Move animal ID %s</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

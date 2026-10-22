@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="plaintext" original="src/Resources/contao/languages/de/tl_animals_categories.xlf" source-language="en" target-language="de">
+    <body>
+      <!-- Fields -->
+      <trans-unit id="tl_animals_categories.title.0">
+        <source>Category name</source>
+        <target>Tier-Kategorie Name</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.title.1">
+        <source>Please enter the category name here.</source>
+        <target>Geben Sie hier den Kategorienamen ein.</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.image.0">
+        <source>Category image</source>
+        <target>Tier-Kategorie Bild</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.image.1">
+        <source>Please select a category image.</source>
+        <target>Kategorie-Bild auswählen.</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.description.0">
+        <source>Category description</source>
+        <target>Tier-Kategorie Beschreibung</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.description.1">
+        <source>Please enter a category description.</source>
+        <target>Kategoriebeschreibung hier eingeben.</target>
+      </trans-unit>
+
+      <!-- Legends -->
+      <trans-unit id="tl_animals_categories.title_legend">
+        <source>Basic settings</source>
+        <target>Tier-Grundeinstellungen</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.image_legend">
+        <source>Image settings</source>
+        <target>Tier-Kategorie Bild</target>
+      </trans-unit>
+
+      <!-- Buttons -->
+      <trans-unit id="tl_animals_categories.new.0">
+        <source>New category</source>
+        <target>Neue Tier-Kategorie</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.new.1">
+        <source>Create a new animal category</source>
+        <target>Eine neue Tier-Kategorie anlegen</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.show.0">
+        <source>Category details</source>
+        <target>Tier-Kategorie-Details</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.show.1">
+        <source>Show details of category ID %s</source>
+        <target>Details der Tier-Kategorie ID %s anzeigen</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.editheader.0">
+        <source>Edit animals</source>
+        <target>Tiere bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.editheader.1">
+        <source>Edit animals in category ID %s</source>
+        <target>Tiere in Kategorie ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.edit.0">
+        <source>Edit category</source>
+        <target>Tier-Kategorie bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.edit.1">
+        <source>Edit category ID %s</source>
+        <target>Tier-Kategorie ID %s bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.copy.0">
+        <source>Duplicate category</source>
+        <target>Tier-Kategorie kopieren</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.copy.1">
+        <source>Duplicate category ID %s</source>
+        <target>Tier-Kategorie ID %s kopieren</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.delete.0">
+        <source>Delete category</source>
+        <target>Tier-Kategorie löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.delete.1">
+        <source>Delete category ID %s</source>
+        <target>Tier-Kategorie ID %s löschen</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.children.0">
+        <source>Edit animals</source>
+        <target>Tiere bearbeiten</target>
+      </trans-unit>
+      <trans-unit id="tl_animals_categories.children.1">
+        <source>Edit animals in category ID %s</source>
+        <target>Tiere in Kategorie ID %s bearbeiten</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

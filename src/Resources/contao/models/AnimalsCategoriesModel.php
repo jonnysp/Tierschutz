@@ -1,6 +1,9 @@
 <?php
+namespace Animals\Model;
 
-class AnimalsCategoriesModel extends \Model
+use Contao\Model;
+
+class AnimalsCategoriesModel extends Model
 {
     protected static $strTable = 'tl_animals_categories';
 }

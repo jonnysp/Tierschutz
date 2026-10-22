@@ -1,5 +1,5 @@
 <?php
-
+use Contao\DC_Table;
 /**
  * Table tl_animals_categories
  */
@@ -9,8 +9,9 @@ $GLOBALS['TL_DCA']['tl_animals_categories'] = array
 	// Config
 	'config' => array
 	(
-		'dataContainer'               => 'Table',
+		'dataContainer'               => DC_Table::class,
 		'ctable'                      => array('tl_animals'),
+		'markAsCopy'                  => 'title',
 		'enableVersioning'            => true,
 		'sql' => array
 		(
@@ -46,41 +47,41 @@ $GLOBALS['TL_DCA']['tl_animals_categories'] = array
 				'class'               => 'header_edit_all',
 				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
 			)
-		),
-		'operations' => array
-		(
-			'edit' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['edit'],
-				'href'                => 'table=tl_animals',
-				'icon'                => 'edit.svg'
-			),
-			'editheader' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['editheader'],
-				'href'                => 'act=edit',
-				'icon'                => 'header.svg'
-			),
-			'copy' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['copy'],
-				'href'                => 'act=copy',
-				'icon'                => 'copy.svg'
-			),
-			'delete' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['delete'],
-				'href'                => 'act=delete',
-				'icon'                => 'delete.svg',
-				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
-			),
-			'show' => array
-			(
-				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['show'],
-				'href'                => 'act=show',
-				'icon'                => 'show.svg'
-			)
-		)
+		)//,
+//		'operations' => array
+//		(
+//			'edit' => array
+//			(
+//				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['edit'],
+//				'href'                => 'table=tl_animals',
+//				'icon'                => 'edit.svg'
+//			),
+//			'editheader' => array
+//			(
+//				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['editheader'],
+//				'href'                => 'act=edit',
+//				'icon'                => 'header.svg'
+//			),
+//			'copy' => array
+//			(
+//				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['copy'],
+//				'href'                => 'act=copy',
+//				'icon'                => 'copy.svg'
+//			),
+//			'delete' => array
+//			(
+//				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['delete'],
+//				'href'                => 'act=delete',
+//				'icon'                => 'delete.svg',
+//				'attributes'          => 'onclick="if(!confirm(\'' . $GLOBALS['TL_LANG']['MSC']['deleteConfirm'] . '\'))return false;Backend.getScrollOffset()"'
+//			),
+//			'show' => array
+//			(
+//				'label'               => &$GLOBALS['TL_LANG']['tl_animals_categories']['show'],
+//				'href'                => 'act=show',
+//				'icon'                => 'show.svg'
+//			)
+//		)
 	),
 
 	// Palettes
@@ -112,7 +113,7 @@ $GLOBALS['TL_DCA']['tl_animals_categories'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_animals_categories']['image'],
 			'inputType'               => 'fileTree',
-			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>$GLOBALS['TL_CONFIG']['validImageTypes']),
+			'eval'                    => array('fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'%contao.image.valid_extensions%'),
 			'sql'                     => "binary(16) NULL",
 		),
 		'description' => array

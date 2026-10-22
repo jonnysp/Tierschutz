@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file datatype="plaintext" original="src/Resources/contao/languages/de/modules.xlf" source-language="en" target-language="de">
+    <body>
+      <!-- Backend-Menü (MOD) -->
+      <trans-unit id="MOD.animals.0">
+        <source>Animal Management</source>
+        <target>Tiere-Verwaltung</target>
+      </trans-unit>
+      <trans-unit id="MOD.animalscategorie.0">
+        <source>Animals</source>
+        <target>Tiere</target>
+      </trans-unit>
+      <trans-unit id="MOD.animalscategorie.1">
+        <source>Manage animals</source>
+        <target>Verwalte die Tiere</target>
+      </trans-unit>
+
+      <!-- Inhaltselemente (CTE) -->
+      <trans-unit id="CTE.animalscategorie_viewer.0">
+        <source>Animal Category</source>
+        <target>Tier-Kategorie</target>
+      </trans-unit>
+      <trans-unit id="CTE.animalscategorie_viewer.1">
+        <source>Render animal categories</source>
+        <target></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
